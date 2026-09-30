@@ -1,0 +1,12 @@
+Put your real Gupta Tailors images in this folder and replace the Unsplash URLs in src/data.js and src/App.jsx.
+
+Suggested:
+hero-suit.jpg
+shirt-tailoring.jpg
+pant-tailoring.jpg
+kurta.jpg
+sherwani.jpg
+uniforms.jpg
+tailor-workshop.jpg
+fabric.jpg
+gallery-1.jpg ... gallery-5.jpg

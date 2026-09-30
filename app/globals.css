@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap');
+@import "tailwindcss";
+
+/* Brand tokens: use as bg-maroon, text-gold2, border-line, font-serif, font-hand, ... */
+@theme {
+  --color-maroon: #7d171b;
+  --color-maroon2: #5e1014;
+  --color-gold: #c58a20;
+  --color-gold2: #e4b64c;
+  --color-navy: #101f45;
+  --color-ink: #18233d;
+  --color-muted: #697080;
+  --color-line: #e7e7e7;
+
+  --font-sans: "DM Sans", "Noto Sans Devanagari", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-hand: "Caveat", cursive;
+
+  --animate-shimmer: insta-shimmer 1.3s linear infinite;
+  --animate-cta-pulse: ctaPulse 1.8s ease-out infinite;
+
+  @keyframes insta-shimmer { to { background-position: -200% 0; } }
+  @keyframes ctaPulse {
+    0% { transform: scale(.85); opacity: .8; }
+    100% { transform: scale(1.35); opacity: 0; }
+  }
+}
+
+/* Plain :hover like the legacy CSS (Tailwind v4 limits hover to hover-capable devices by default). */
+@custom-variant hover (&:hover);
+
+/* Site-wide content width (replaces Tailwind's default container). */
+@utility container {
+  width: min(1180px, 92%);
+  margin-inline: auto;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  html, body { line-height: normal; }
+  body { @apply bg-white text-ink font-sans; }
+  button, a { font: inherit; }
+  a { color: inherit; text-decoration: none; }
+}
+
+/* Shared building blocks used across many pages. */
+@layer components {
+  .section { @apply py-10 max-[760px]:py-[30px]; }
+  main > .section:first-child { @apply pt-3; }
+  .soft { @apply bg-[#f7f7f7]; }
+
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg border-0 px-5 py-[13px] font-bold cursor-pointer transition-all duration-[250ms] hover:-translate-y-0.5; }
+  .btn-primary { @apply bg-maroon text-white; }
+  .btn-gold { @apply text-white bg-[linear-gradient(135deg,#d4a03a,#a8741a)] shadow-[0_8px_20px_rgba(168,116,26,.3)] hover:bg-[linear-gradient(135deg,#dcab45,#b07a18)]; }
+
+  .eyebrow { @apply mb-3.5 text-xs font-bold tracking-[4px] text-gold; }
+  .eyebrow-light { @apply text-[#e9c879]; }
+  .svc-eyebrow { @apply inline-flex items-center gap-2.5 text-xs font-bold tracking-[2px] uppercase text-gold before:content-[''] before:w-[34px] before:h-px before:bg-gold; }
+
+  .center-cta { @apply mt-[22px] text-center; }
+}
