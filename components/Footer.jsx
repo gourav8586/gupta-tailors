@@ -21,6 +21,7 @@ export default function Footer() {
           <Link className={LINK} href="/">Home</Link>
           <Link className={LINK} href="/about">About Us</Link>
           <Link className={LINK} href="/services">Services</Link>
+          <Link className={LINK} href="/process">How It Works</Link>
           <Link className={LINK} href="/gallery">Gallery</Link>
           <Link className={LINK} href="/contact">Contact Karein</Link>
         </div>

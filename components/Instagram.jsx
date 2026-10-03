@@ -36,7 +36,7 @@ function InstaPost({ post, featured }) {
     <a className={`${POST} ${featured ? FEATURED : ""} shadow-[0_10px_25px_rgba(65,42,17,.08)]`} href={post.permalink} target="_blank" rel="noreferrer"
       onMouseEnter={play} onMouseLeave={stop} onFocus={play} onBlur={stop}>
       <img className={`${MEDIA} transition-transform duration-600 ease-[ease] group-hover:scale-[1.06] motion-reduce:transition-none`} src={isVideo ? post.thumbnail_url : post.media_url} alt={caption ? caption.slice(0, 80) : "Gupta Tailors Instagram post"} loading="lazy" />
-      {isVideo && <video className={`${MEDIA} opacity-0 transition-opacity duration-300 ease-[ease] group-hover:opacity-100 group-focus:opacity-100`} ref={videoRef} src={post.media_url} muted loop playsInline preload="none" aria-hidden="true" />}
+      {isVideo && <video disablePictureInPicture controlsList="nodownload" onContextMenu={e => e.preventDefault()} className={`${MEDIA} opacity-0 transition-opacity duration-300 ease-[ease] group-hover:opacity-100 group-focus:opacity-100`} ref={videoRef} src={post.media_url} muted loop playsInline preload="none" aria-hidden="true" />}
       {post.media_type !== "IMAGE" && (
         <span className="absolute top-2.5 right-2.5 z-[2] grid h-[30px] w-[30px] place-items-center rounded-full bg-[rgba(0,0,0,.45)] text-white backdrop-blur-[4px]" aria-hidden="true">{isVideo ? <Clapperboard className="h-4 w-4" /> : <Copy className="h-4 w-4" />}</span>
       )}
@@ -84,12 +84,12 @@ export function InstagramFeed() {
           <span className="text-[14px] font-semibold text-muted">@{profile?.username || "gupta.tailors"}</span>
         </div>
         {profile && (
-          <div className="ml-auto flex gap-[26px] px-2 max-[760px]:order-3 max-[760px]:ml-0 max-[760px]:flex-1 max-[760px]:justify-start max-[760px]:gap-5 max-[760px]:p-0">
+          <div className="ml-auto flex gap-[26px] px-2 max-[760px]:order-3 max-[760px]:ml-0 max-[760px]:justify-start max-[760px]:gap-4 max-[760px]:p-0">
             <div className="text-center"><b className={STAT_NUM}>{profile.media_count}</b><span className={STAT_LABEL}>Posts</span></div>
             <div className="text-center"><b className={STAT_NUM}>{profile.followers_count}</b><span className={STAT_LABEL}>Followers</span></div>
           </div>
         )}
-        <a className={`inline-flex flex-none items-center gap-2 rounded-[40px] bg-(image:--ig) px-[22px] py-3 text-[15px] font-bold text-white shadow-[0_10px_22px_rgba(238,42,123,.25)] transition-transform duration-[250ms] ease-[ease] hover:-translate-y-0.5 max-[760px]:order-4 ${profile ? "ml-0 max-[760px]:ml-auto" : "ml-auto"}`} href={SOCIALS.instagram} target="_blank" rel="noreferrer">
+        <a className={`inline-flex flex-none items-center gap-2 rounded-[40px] bg-(image:--ig) px-[22px] py-3 text-[15px] font-bold text-white shadow-[0_10px_22px_rgba(238,42,123,.25)] transition-transform duration-[250ms] ease-[ease] hover:-translate-y-0.5 max-[760px]:order-4 max-[760px]:gap-1.5 max-[760px]:px-4 max-[760px]:py-2.5 max-[760px]:text-[13.5px] ${profile ? "ml-0 max-[760px]:ml-auto" : "ml-auto"}`} href={SOCIALS.instagram} target="_blank" rel="noreferrer">
           <InstagramIcon size={18} /> Follow Karein
         </a>
       </div>

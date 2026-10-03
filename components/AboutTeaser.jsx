@@ -45,7 +45,7 @@ export default function AboutTeaser() {
   const reveal = dir => (ready ? `${REVEAL_BASE} ${visible ? REVEAL_SHOWN : REVEAL_HIDDEN[dir]}` : "");
 
   return (
-    <section ref={ref} className="section overflow-hidden bg-[#faf6ee] leading-[normal]">
+    <section ref={ref} className="section overflow-hidden bg-white leading-[normal]">
       <div className="container grid grid-cols-[180px_minmax(0,.9fr)_minmax(0,1.4fr)_minmax(0,.85fr)] items-center gap-[34px] max-[1180px]:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,1fr)] max-[900px]:grid-cols-2 max-[560px]:grid-cols-1 max-[560px]:gap-[26px]">
         <div className={`text-center text-[#b7a386] max-[1180px]:hidden ${reveal("left")}`} aria-hidden="true" data-reveal="left" style={{ "--d": "600ms" }}>
           <svg className="mx-auto mb-1.5 block h-auto w-[100px]" viewBox="0 0 120 220" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
@@ -73,9 +73,9 @@ export default function AboutTeaser() {
           <Link className="btn btn-primary" href="/about">Hamari Kahani <ArrowRight size={18} /></Link>
         </div>
 
-        <div className={`relative aspect-[4/5] overflow-hidden rounded-[14px] shadow-[0_18px_40px_rgba(94,16,20,.14)] max-[900px]:-order-1 max-[560px]:aspect-[4/4.5] ${reveal("right")}`} data-reveal="right">
-          <img className="block h-full w-full object-cover" src="https://images.unsplash.com/photo-1739797725182-9823eace187e?auto=format&fit=crop&w=700&h=900&q=80" alt="Gupta Tailors ke anubhavi kaarigar silai karte hue" loading="lazy" />
-          <div className="absolute right-0 bottom-0 rounded-tl-xl border-2 border-r-0 border-b-0 border-gold2 bg-[linear-gradient(150deg,#7d171b,#5e1014)] px-5 pt-[18px] pb-4 text-center text-white"><b className="block font-serif text-[40px] leading-none font-bold">{FOUNDED_YEAR}</b><span className="mt-1.5 block text-[11px] font-bold tracking-[1.5px] text-[#f3dca6] uppercase">Se Aapke Saath</span></div>
+        <div className={`relative aspect-[4/5] overflow-hidden rounded-[14px] max-[900px]:-order-1 max-[560px]:aspect-[4/4.5] ${reveal("right")}`} data-reveal="right">
+          <img className="block h-full w-full object-cover object-top" src="/img/about/owner-portrait.jpg" alt="Anil Gupta, Founder & CEO, Gupta Tailors Alwar" loading="lazy" />
+          <div className="absolute right-0 bottom-0 flex items-center gap-3.5 rounded-tl-xl border-2 border-r-0 border-b-0 border-gold2 bg-[linear-gradient(150deg,#7d171b,#5e1014)] px-4 py-3 text-white"><b className="block font-serif text-[34px] leading-none font-bold">{FOUNDED_YEAR}</b><span aria-hidden="true" className="h-9 w-px bg-[rgba(228,182,76,.5)]" /><span className="text-left leading-tight"><b className="block font-serif text-[18px] font-bold text-white">Anil Gupta</b><span className="block text-[10px] font-bold tracking-[1.5px] text-gold2 uppercase">Founder &amp; CEO</span></span></div>
         </div>
       </div>
     </section>

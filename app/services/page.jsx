@@ -1,12 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, Phone } from "lucide-react";
-import { PHONE } from "../../lib/site";
+import { CalendarClock, CheckCircle2, Palette, Phone, Ruler, Scissors, Shirt, Sparkles } from "lucide-react";
+import { PHONE, PHONE_DISPLAY } from "../../lib/site";
 import { PageHeader, SectionTitle } from "../../components/UI";
 import Years from "../../components/Years";
 import { services, tailoringChecklist } from "../../lib/data";
-import Faq from "../../components/Faq";
 
 const highlights = [
   { value: `${tailoringChecklist.length}+`, label: "Silai Services" },
@@ -14,18 +13,32 @@ const highlights = [
   { value: "Perfect", label: "Fit Guarantee" },
 ];
 
+const benefits = [
+  { icon: Ruler, title: "Haath Se Sateek Naap", text: "Anubhavi kaarigar khud naap lete hain aur aapka naap save rehta hai, taaki agli baar sirf call karke order de sakein." },
+  { icon: Scissors, title: "Trial Ke Baad Finishing", text: "Pehle trial stitch, phir fitting check. Jab tak kapda bilkul sahi na baithe, final finishing nahi hoti." },
+  { icon: Palette, title: "Apna Fabric Laayein", text: "Apna kapda laayein ya hamari dukaan ki curated fabric range mein se chunein, dono ki silai ek jaisi dhyan se." },
+  { icon: CalendarClock, title: "Time Par Delivery", text: "Order lete waqt delivery ki date bata dete hain, aur shaadi-function ke orders ki planning pehle se karte hain." },
+];
+
+const stitchSteps = [
+  { icon: Phone, title: "Call Ya Visit", text: "Humein call karein ya seedhe Tilak Market, Alwar ki dukaan par aayein." },
+  { icon: Ruler, title: "Naap Aur Design", text: "Sateek naap ke saath fabric, style aur mauke par baat karke design final karte hain." },
+  { icon: Shirt, title: "Trial & Fitting", text: "Trial par fitting check karke har chhoti kami wahin theek karte hain." },
+  { icon: Sparkles, title: "Final Delivery", text: "Pressing aur quality check ke baad bataye gaye din par aapka kapda taiyaar." },
+];
+
 export default function Services() {
   return (
     <>
       <PageHeader
-        image="https://images.unsplash.com/photo-1602810319428-019690571b5b?auto=format&fit=crop&w=1800&q=80"
+        image="/img/1602810319428-019690571b5b-w1800.jpg"
         crumb="Tailoring Services in Alwar"
       />
 
       <section className="section leading-[normal]">
         <div className="container grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-[50px] items-center max-[800px]:grid-cols-[1fr] max-[800px]:gap-7">
-          <div className="rounded-2xl overflow-hidden aspect-[5/4] shadow-[0_20px_50px_rgba(28,36,48,.18)]">
-            <img className="w-full h-full object-cover block" src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1000&q=80" alt="Naap se sila hua custom suit" />
+          <div className="rounded-2xl overflow-hidden aspect-[5/4]">
+            <img className="w-full h-full object-cover object-top block" src="/img/services/tailor-shop-cuff-fitting.jpg" alt="Gupta Tailors, Alwar ki dukaan mein custom shirt ki fitting" />
           </div>
           <div>
             <span className="svc-eyebrow leading-[normal]">Custom Tailoring</span>
@@ -55,13 +68,13 @@ export default function Services() {
           <div className="grid grid-cols-[repeat(3,1fr)] gap-6 max-[1000px]:grid-cols-[repeat(2,1fr)] max-[600px]:grid-cols-[1fr]">
             {services.map((s, i) => (
               <motion.article
-                className="group bg-white rounded-2xl overflow-hidden border border-[#efe4cf] shadow-[0_12px_30px_rgba(28,36,48,.07)] [transition:transform_.45s_cubic-bezier(.2,.7,.2,1),box-shadow_.45s_ease,border-color_.45s_ease] hover:[transform:translateY(-6px)] hover:border-[#e6cf9f] hover:shadow-[0_22px_44px_rgba(125,23,27,.12)]"
+                className="group bg-white rounded-2xl overflow-hidden border border-[#efe4cf] [transition:transform_.45s_cubic-bezier(.2,.7,.2,1),border-color_.45s_ease] hover:[transform:translateY(-6px)] hover:border-[#e6cf9f]"
                 key={s.title}
                 initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: .2 }} transition={{ duration: .5, delay: i * .08, ease: "easeOut" }}>
                 <div className="relative aspect-[4/3.4] overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-[linear-gradient(180deg,transparent_60%,rgba(15,12,10,.35))]">
-                  <img className="w-full h-full object-cover object-top block [transition:transform_.7s_ease] group-hover:[transform:scale(1.06)]" src={s.image} alt={s.title} loading="lazy" />
-                  <span className="absolute left-4 top-4 z-[1] bg-white text-maroon text-[11px] font-extrabold tracking-[1.2px] py-1.5 px-3 rounded-[30px] shadow-[0_6px_14px_rgba(0,0,0,.15)]">{s.tag}</span>
+                  <img className={`w-full h-full object-cover ${s.position || "object-top"} block [transition:transform_.7s_ease] group-hover:[transform:scale(1.06)]`} src={s.image} alt={s.title} loading="lazy" />
+                  <span className="absolute left-4 top-4 z-[1] bg-white text-maroon text-[11px] font-extrabold tracking-[1.2px] py-1.5 px-3 rounded-[30px]">{s.tag}</span>
                   <span className="absolute right-4 bottom-2.5 z-[1] font-serif text-[44px] font-bold leading-none text-[rgba(255,255,255,.85)]">{String(i + 1).padStart(2, "0")}</span>
                 </div>
                 <div className="pt-[22px] px-6 pb-6">
@@ -75,7 +88,43 @@ export default function Services() {
         </div>
       </section>
 
-      <Faq />
+      <section className="bg-[#1c2430] text-white py-11 leading-[normal]">
+        <div className="container">
+          <div className="text-center mb-7">
+            <span className="svc-eyebrow leading-[normal] text-gold2 before:bg-gold2">Silai Kaise Hoti Hai</span>
+            <h2 className="font-serif text-[40px] font-bold mt-2 max-[560px]:text-[32px]">4 Aasaan Steps Mein Perfect Fit</h2>
+          </div>
+          <ol className="list-none m-0 p-0 grid grid-cols-[repeat(4,1fr)] gap-[18px] max-[1000px]:grid-cols-[1fr_1fr] max-[520px]:grid-cols-[1fr]">
+            {stitchSteps.map(({ icon: Icon, title, text }, i) => (
+              <li className="relative bg-[rgba(255,255,255,.05)] border border-[rgba(255,255,255,.1)] rounded-[14px] py-6 px-[22px]" key={title}>
+                <i className="absolute right-[18px] top-3 not-italic font-serif text-[44px] font-bold text-[rgba(228,182,76,.25)]">{String(i + 1).padStart(2, "0")}</i>
+                <span className="w-12 h-12 rounded-full grid place-items-center bg-maroon text-white mb-3.5 [&_svg]:w-[22px] [&_svg]:h-[22px]"><Icon /></span>
+                <h3 className="font-serif text-[23px] font-bold mb-1.5 text-white">{title}</h3>
+                <p className="text-[#b9c1d1] text-[14px] leading-[1.6]">{text}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="text-center mt-[26px]">
+            <a className="btn btn-gold" href={`tel:+${PHONE}`}><Phone size={18} /> Abhi Call Karein {PHONE_DISPLAY}</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section leading-[normal]">
+        <div className="container">
+          <SectionTitle eyebrow="Humein Hi Kyun Chunein" title="Aapke Naap Se, Aapki Pasand Se" />
+          <div className="grid grid-cols-[repeat(4,1fr)] gap-[18px] max-[1000px]:grid-cols-[1fr_1fr] max-[520px]:grid-cols-[1fr]">
+            {benefits.map(({ icon: Icon, title, text }) => (
+              <div className="bg-white rounded-[14px] py-[26px] px-[22px] border-t-[3px] border-maroon [transition:transform_.25s] hover:[transform:translateY(-4px)]" key={title}>
+                <span className="w-[52px] h-[52px] rounded-xl grid place-items-center bg-[#fbf3e4] text-maroon mb-3.5 [&_svg]:w-6 [&_svg]:h-6"><Icon /></span>
+                <h3 className="font-serif text-[23px] leading-[1.15] font-bold text-maroon mb-2">{title}</h3>
+                <p className="text-muted text-[14px] leading-[1.6]">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
     </>
   );
 }

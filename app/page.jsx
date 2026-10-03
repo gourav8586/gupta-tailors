@@ -10,6 +10,7 @@ import { PHONE, PHONE_DISPLAY } from "../lib/site";
 import { CategorySection, PremiumServiceCard, SectionTitle } from "../components/UI";
 import { InstagramFeed } from "../components/Instagram";
 import Faq from "../components/Faq";
+import HeroVideo from "../components/HeroVideo";
 import Years from "../components/Years";
 import AboutTeaser from "../components/AboutTeaser";
 import ProcessSteps from "../components/ProcessSteps";
@@ -23,8 +24,8 @@ export default function Home() {
       <JsonLd data={faqJsonLd(faqs)} />
       <section className="relative flex min-h-[calc(100svh-114px)] items-center overflow-hidden bg-navy leading-[normal] text-white max-[900px]:min-h-[45svh]">
         <h1 className="sr-only">Gupta Tailors — Alwar Ke Bharosemand Tailor, 1979 Se. Custom Tailoring Aur Uniform Stitching.</h1>
-        <video className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden" src="/hero-video.mp4" autoPlay muted loop playsInline preload="auto" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,31,69,.92)_0%,rgba(16,31,69,.72)_45%,rgba(16,31,69,.25)_100%)] max-[900px]:bg-[linear-gradient(90deg,rgba(16,31,69,.9),rgba(16,31,69,.7))]" />
+        <HeroVideo />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,31,69,.35)_0%,rgba(16,31,69,.15)_50%,rgba(16,31,69,0)_100%)] max-[900px]:bg-[rgba(16,31,69,.2)]" />
         <div className="container relative z-[2] py-[44px]">
           <motion.div className="max-w-[920px]" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8 }}>
             {/* <div className="eyebrow light">SINCE 1979 · PARAMPARA AUR STYLE KA SANGAM</div> */}
@@ -84,9 +85,9 @@ export default function Home() {
         </div>
       </section>
 
-      <AboutTeaser />
-
       <ProcessSteps />
+
+      <AboutTeaser />
 
       <Faq />
 

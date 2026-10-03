@@ -10,7 +10,7 @@ const CONTACT_LINK = "text-[#d7dce6] hover:text-gold2";
 
 export default function Faq() {
   return (
-    <section className="section soft">
+    <section className="section bg-[#faf6ee]">
       <div className="container grid grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-start gap-10 max-[901px]:grid-cols-[1fr] max-[901px]:gap-7">
         <aside className="sticky top-[110px] rounded-[14px] bg-[#1c2430] px-8 py-9 text-white max-[901px]:static max-[901px]:px-6 max-[901px]:py-[30px]">
           <span className="text-[11px] font-bold tracking-[4px] text-gold2">FAQs</span>

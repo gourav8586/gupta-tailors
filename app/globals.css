@@ -41,6 +41,11 @@
   body { @apply bg-white text-ink font-sans; }
   button, a { font: inherit; }
   a { color: inherit; text-decoration: none; }
+  /* Copy protection: no text selection, no image dragging / iOS long-press save; forms stay usable. */
+  body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  input, textarea, [contenteditable="true"] { -webkit-user-select: text; user-select: text; }
+  img, video { -webkit-user-drag: none; user-drag: none; }
+  @media print { body { display: none !important; } }
 }
 
 /* Shared building blocks used across many pages. */
@@ -51,7 +56,7 @@
 
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg border-0 px-5 py-[13px] font-bold cursor-pointer transition-all duration-[250ms] hover:-translate-y-0.5; }
   .btn-primary { @apply bg-maroon text-white; }
-  .btn-gold { @apply text-white bg-[linear-gradient(135deg,#d4a03a,#a8741a)] shadow-[0_8px_20px_rgba(168,116,26,.3)] hover:bg-[linear-gradient(135deg,#dcab45,#b07a18)]; }
+  .btn-gold { @apply text-white bg-[linear-gradient(135deg,#d4a03a,#a8741a)] hover:bg-[linear-gradient(135deg,#dcab45,#b07a18)]; }
 
   .eyebrow { @apply mb-3.5 text-xs font-bold tracking-[4px] text-gold; }
   .eyebrow-light { @apply text-[#e9c879]; }

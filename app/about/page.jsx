@@ -1,10 +1,9 @@
-import { Award, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { PageHeader, SectionTitle } from "../../components/UI";
 import { milestones, values } from "../../lib/data";
 import { pageMetadata } from "../../lib/seo";
 import Years from "../../components/Years";
-import Faq from "../../components/Faq";
 
 export const metadata = pageMetadata("about");
 
@@ -14,7 +13,7 @@ export default function About() {
   return (
     <>
       <PageHeader
-        image="https://images.unsplash.com/photo-1610652492500-ded49ceeb378?auto=format&fit=crop&w=1800&q=80"
+        image="/img/1610652492500-ded49ceeb378-w1800.jpg"
         crumb="About Gupta Tailors, Alwar"
       />
 
@@ -27,12 +26,11 @@ export default function About() {
             <p className={copyP}>Traditional kaarigari ko modern styling, behtareen fabric aur sateek naap ke saath milakar hum har customer ko personal service dete hain. Chahe shaadi ka suit ho, roz pehenne ki shirt ho ya poori team ki uniform — har kaam utni hi mehnat se kiya jaata hai jitni 1979 mein pehle din ki gayi thi.</p>
             <Link className="btn btn-primary" href="/contact">Hamari Dukaan Par Aayein <ArrowRight size={18}/></Link>
           </div>
-          <div className="relative h-[510px] max-[760px]:h-[390px]">
-            <img className="h-full w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?auto=format&fit=crop&w=1200&q=85" alt="Tailor working on a garment"/>
-            <div className="absolute bottom-[30px] left-[-30px] grid grid-cols-[auto_1fr] gap-x-2.5 border-l-4 border-gold bg-white px-[22px] py-[18px] shadow-[0_18px_50px_rgba(61,34,16,.07)] max-[760px]:bottom-[15px] max-[760px]:left-3">
-              <Award className="row-start-1 row-end-3 text-gold"/>
-              <b className="text-[16px]">1979 Se</b>
-              <span className="text-[12px] text-muted">Bharosemand Kaarigari</span>
+          <div className="relative h-[510px] max-[760px]:-order-1 max-[760px]:h-[390px]">
+            <img className="h-full w-full rounded-xl object-cover object-top" src="/img/about/owner-square.jpg" alt="Anil Gupta, Founder & CEO, Gupta Tailors Alwar"/>
+            <div className="absolute bottom-[30px] left-[-30px] border-l-4 border-gold bg-white px-[22px] py-[18px] max-[760px]:bottom-[15px] max-[760px]:left-3">
+              <b className="block font-serif text-[22px] leading-none text-maroon">Anil Gupta</b>
+              <span className="mt-1 block text-[11px] font-bold tracking-[1.5px] text-gold uppercase">Founder &amp; CEO</span>
             </div>
           </div>
         </div>
@@ -43,7 +41,7 @@ export default function About() {
           <SectionTitle eyebrow="Hamari Soch" title="Hamari Values" />
           <div className="grid grid-cols-4 gap-5 max-[980px]:grid-cols-2 max-[760px]:grid-cols-1">
             {values.map(v => (
-              <div className="rounded-[10px] border border-line bg-white px-[22px] py-7 shadow-[0_7px_25px_rgba(65,42,17,.05)] transition-all duration-300 ease-[ease] hover:-translate-y-1.5 hover:shadow-[0_18px_50px_rgba(61,34,16,.07)]" key={v.title}>
+              <div className="rounded-[10px] border border-line bg-white px-[22px] py-7 transition-all duration-300 ease-[ease] hover:-translate-y-1.5" key={v.title}>
                 <h3 className="mt-0 mb-2 font-serif text-[22px] font-bold text-maroon">{v.title}</h3>
                 <p className="m-0 text-[13px] leading-[1.6] text-muted">{v.text}</p>
               </div>
@@ -66,7 +64,6 @@ export default function About() {
         </div>
       </section>
 
-      <Faq />
     </>
   );
 }

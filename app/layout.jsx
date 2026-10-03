@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CallFloat from "../components/CallFloat";
 import JsonLd from "../components/JsonLd";
+import SiteProtection from "../components/SiteProtection";
 import { KEYWORDS, PAGES, businessJsonLd } from "../lib/seo";
 import { GOOGLE_SITE_VERIFICATION, SITE_NAME, SITE_URL } from "../lib/site";
 import "./globals.css";
@@ -82,6 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <main>{children}</main>
           <Footer />
           <CallFloat />
+          <SiteProtection />
         </div>
       </body>
     </html>

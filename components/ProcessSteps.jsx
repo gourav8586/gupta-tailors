@@ -7,7 +7,7 @@ export default function ProcessSteps() {
   return (
     <section className="relative overflow-hidden bg-[#140e0c] py-[30px] leading-[normal]">
       <div
-        className="absolute -inset-3 [background:linear-gradient(90deg,rgba(20,14,12,.9)_0%,rgba(20,14,12,.78)_50%,rgba(20,14,12,.9)_100%),url('https://images.unsplash.com/photo-1776107490710-f5c08a0c6a98?auto=format&fit=crop&w=2000&q=80')_center/cover_no-repeat] blur-[1.5px] pointer-events-none"
+        className="absolute -inset-3 [background:linear-gradient(90deg,rgba(20,14,12,.9)_0%,rgba(20,14,12,.78)_50%,rgba(20,14,12,.9)_100%),url('/img/1776107490710-f5c08a0c6a98-w2000.jpg')_center/cover_no-repeat] blur-[1.5px] pointer-events-none"
         aria-hidden="true"
       />
       <div className="container relative z-[1]">
@@ -21,7 +21,7 @@ export default function ProcessSteps() {
             const Icon = stepIcons[i];
             return (
               <li className="relative text-center max-[560px]:last:col-span-2 not-last:after:content-['→'] not-last:after:absolute not-last:after:top-[18px] not-last:after:-right-[22px] not-last:after:w-6 not-last:after:text-[24px] not-last:after:leading-none not-last:after:text-gold2 max-[900px]:nth-3:after:hidden max-[560px]:after:hidden" key={step.n}>
-                <div className="w-[60px] h-[60px] mx-auto mb-2 rounded-full bg-white border-[1.5px] border-[#d8822c] grid place-items-center text-maroon shadow-[0_8px_22px_rgba(0,0,0,.35)] [&_svg]:w-[26px] [&_svg]:h-[26px]"><Icon /></div>
+                <div className="w-[60px] h-[60px] mx-auto mb-2 rounded-full bg-white border-[1.5px] border-[#d8822c] grid place-items-center text-maroon [&_svg]:w-[26px] [&_svg]:h-[26px]"><Icon /></div>
                 <small className="block text-[14px] font-semibold text-gold2">{step.n}</small>
                 <h3 className="font-serif text-[20px] font-bold text-white mb-1">{step.title}</h3>
                 <p className="mx-auto max-w-[190px] text-[13px] leading-[1.5] text-[#e9e1dc]">{step.text}</p>

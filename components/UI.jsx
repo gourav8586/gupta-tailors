@@ -13,7 +13,7 @@ export function SectionTitle({ eyebrow, title, text, className = "" }) {
   );
 }
 
-const DEFAULT_HEADER_IMAGE = "https://images.unsplash.com/photo-1602810319428-019690571b5b?auto=format&fit=crop&w=1800&q=80";
+const DEFAULT_HEADER_IMAGE = "/img/1602810319428-019690571b5b-w1800.jpg";
 
 // Page banner showing the current page name as the heading.
 export function PageHeader({ crumb, image = DEFAULT_HEADER_IMAGE }) {
@@ -52,7 +52,7 @@ export function PremiumServiceCard({ icon: Icon, title, items }) {
 export function FabricCard({ title, text, image }) {
   return (
     <div className="group text-center leading-[normal]">
-      <div className="relative h-[190px] overflow-hidden rounded-[14px] shadow-[0_12px_30px_rgba(65,42,17,.1)]"><img className="h-full w-full object-cover transition-all duration-500 ease-[ease] group-hover:scale-[1.06]" src={image} alt={title} /></div>
+      <div className="relative h-[190px] overflow-hidden rounded-[14px]"><img className="h-full w-full object-cover transition-all duration-500 ease-[ease] group-hover:scale-[1.06]" src={image} alt={title} /></div>
       <h3 className="mt-4 mb-1.5 font-serif text-[22px] font-bold text-maroon">{title}</h3>
       <p className="m-0 text-[13px] leading-[1.6] text-muted">{text}</p>
     </div>
@@ -69,8 +69,8 @@ export function CategorySection({ title, text, items, href, soft, className = ""
         </div>
         <div className="flex flex-wrap justify-center gap-4">
           {items.slice(0, 10).map(item => (
-            <Link href={href} className="group relative block w-[calc((100%-64px)/5)] max-[1100px]:w-[calc((100%-32px)/3)] max-[700px]:w-[calc((100%-16px)/2)] aspect-[3/4.2] overflow-hidden rounded-[14px] bg-[#1c2430] text-left shadow-[0_14px_34px_rgba(28,36,48,.14)] after:absolute after:inset-0 after:bg-[linear-gradient(180deg,rgba(15,12,10,0)_40%,rgba(15,12,10,.55)_68%,rgba(15,12,10,.9)_100%)] after:content-[''] max-[520px]:aspect-[4/4.4]" key={item.title}>
-              <img className="absolute inset-0 h-full w-full object-cover transition-transform duration-[600ms] ease-[ease] group-hover:scale-[1.06]" src={item.image} alt={item.title} loading="lazy" />
+            <Link href={href} className="group relative block w-[calc((100%-64px)/5)] max-[1100px]:w-[calc((100%-32px)/3)] max-[700px]:w-[calc((100%-16px)/2)] aspect-[3/4.2] overflow-hidden rounded-[14px] bg-[#1c2430] text-left after:absolute after:inset-0 after:bg-[linear-gradient(180deg,rgba(15,12,10,0)_40%,rgba(15,12,10,.55)_68%,rgba(15,12,10,.9)_100%)] after:content-[''] max-[520px]:aspect-[4/4.4]" key={item.title}>
+              <img className={`absolute inset-0 h-full w-full object-cover ${item.position || ""} transition-transform duration-[600ms] ease-[ease] group-hover:scale-[1.06]`} src={item.image} alt={item.title} loading="lazy" />
               <div className="absolute right-0 bottom-0 left-0 z-[1] flex items-end justify-between gap-3.5 px-4 pt-4 pb-[18px]">
                 <div>
                   <h3 className="m-0 mb-1 font-serif text-[22px] font-bold leading-[1.1] text-white">{item.title}</h3>

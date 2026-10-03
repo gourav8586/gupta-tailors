@@ -38,7 +38,7 @@ export function ServiceTiles({ items }) {
       {items.map(name => {
         const Icon = ICONS[name] || Scissors;
         return (
-          <li className="group flex items-center gap-3 p-3.5 bg-white border border-[#eee4d2] rounded-xl [transition:transform_.2s,border-color_.2s,box-shadow_.2s] hover:[transform:translateY(-3px)] hover:border-gold hover:shadow-[0_12px_26px_rgba(125,23,27,.1)]" key={name}>
+          <li className="group flex items-center gap-3 p-3.5 bg-white border border-[#eee4d2] rounded-xl [transition:transform_.2s,border-color_.2s] hover:[transform:translateY(-3px)] hover:border-gold" key={name}>
             <span className="flex-none w-10 h-10 rounded-[10px] grid place-items-center bg-[#fbf3e4] text-maroon [transition:background_.2s,color_.2s] group-hover:bg-maroon group-hover:text-white [&_svg]:w-5 [&_svg]:h-5"><Icon /></span>
             <span className="min-w-0 text-[14px] font-bold leading-[1.3] text-ink [overflow-wrap:anywhere]">{shortName(name)}</span>
           </li>
@@ -51,9 +51,9 @@ export function ServiceTiles({ items }) {
 export default function ServiceGroup({ eyebrow, title, text, image, items, reverse }) {
   return (
     <div className={`grid gap-12 items-center leading-[normal] max-[900px]:grid-cols-[1fr] max-[900px]:gap-7 ${reverse ? "grid-cols-[minmax(0,7fr)_minmax(0,5fr)]" : "grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"}`}>
-      <div className={`relative rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(28,36,48,.18)] aspect-[4/5] w-full after:content-[''] after:absolute after:inset-0 after:bg-[linear-gradient(180deg,transparent_55%,rgba(28,36,48,.55))] max-[900px]:aspect-[16/10] ${reverse ? "order-2 max-[900px]:order-0" : ""}`}>
+      <div className={`relative rounded-2xl overflow-hidden aspect-[4/5] w-full after:content-[''] after:absolute after:inset-0 after:bg-[linear-gradient(180deg,transparent_55%,rgba(28,36,48,.55))] max-[900px]:aspect-[16/10] ${reverse ? "order-2 max-[900px]:order-0" : ""}`}>
         <img className="w-full h-full object-cover block" src={image} alt={title} loading="lazy" />
-        <div className="absolute left-5 bottom-5 z-[1] bg-maroon text-white rounded-xl py-3 px-[18px] flex items-baseline gap-2 shadow-[0_10px_24px_rgba(0,0,0,.25)]">
+        <div className="absolute left-5 bottom-5 z-[1] bg-maroon text-white rounded-xl py-3 px-[18px] flex items-baseline gap-2">
           <b className="font-serif text-[34px] leading-none text-gold2">{items.length}+</b>
           <span className="text-[13px] font-bold tracking-[1px] uppercase">Services</span>
         </div>
