@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="container flex flex-row flex-wrap items-center justify-center gap-x-2 gap-y-1 border-t border-[rgba(255,255,255,.12)] py-[14px] text-center text-[14px] tracking-[.3px] text-white max-[761px]:block max-[761px]:leading-[2] max-[561px]:flex">
-        <span>© 2026 Gupta Tailors. All Rights Reserved.</span>
+        <span>© 1979 - {new Date().getFullYear()} Gupta Tailors. All Rights Reserved.</span>
       </div>
     </footer>
   );

@@ -6,7 +6,7 @@ import {
   ArrowRight, CheckCircle2, PhoneCall, Scissors, Shirt
 } from "lucide-react";
 import { faqs, statsBand, tailoringCategories, tailoringChecklist, uniformCategories, uniformChecklist } from "../lib/data";
-import { PHONE, PHONE_DISPLAY } from "../lib/site";
+import { ADDRESS, FOUNDED_YEAR, PHONE, PHONE_DISPLAY } from "../lib/site";
 import { CategorySection, PremiumServiceCard, SectionTitle } from "../components/UI";
 import { InstagramFeed } from "../components/Instagram";
 import Faq from "../components/Faq";
@@ -23,7 +23,6 @@ export default function Home() {
     <>
       <JsonLd data={faqJsonLd(faqs)} />
       <section className="relative flex min-h-[calc(100svh-114px)] items-center overflow-hidden bg-navy leading-[normal] text-white max-[900px]:min-h-[45svh]">
-        <h1 className="sr-only">Gupta Tailors — Alwar Ke Bharosemand Tailor, 1979 Se. Custom Tailoring Aur Uniform Stitching.</h1>
         <HeroVideo />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,31,69,.35)_0%,rgba(16,31,69,.15)_50%,rgba(16,31,69,0)_100%)] max-[900px]:bg-[rgba(16,31,69,.2)]" />
         <div className="container relative z-[2] py-[44px]">
@@ -54,6 +53,20 @@ export default function Home() {
           {statsBand.map(s => (
             <div key={s.label} className="border-r border-r-[#ecdfc8] text-center text-ink last:border-0 max-[980px]:border-r-0 max-[980px]:border-b max-[980px]:border-b-[rgba(255,255,255,.14)] max-[980px]:pb-3 max-[980px]:last:border-b-0 max-[900px]:border-b-[#ecdfc8] max-[900px]:nth-3:hidden max-[900px]:nth-4:border-b-0 max-[900px]:nth-5:border-b-0"><b className="block font-serif text-[34px] leading-none text-maroon">{s.value === "years" ? <><Years/>+</> : s.value}</b><span className="mt-1 block text-[12px] font-semibold tracking-[.5px] text-[#5b6272]">{s.label}</span></div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-[#f7f4ee] py-8 text-center">
+        <div className="container">
+          <h1 className="font-serif text-3xl font-bold text-maroon sm:text-4xl">Custom Tailoring aur Uniform Stitching in Alwar</h1>
+          <p className="mx-auto mt-3 max-w-2xl leading-relaxed text-muted">
+            Gupta Tailors {FOUNDED_YEAR} se Alwar mein naap se pant, shirt, kurta, safari suit aur shaadi ke kapde silta hai.
+            School, hotel, hospital aur office ke liye bulk uniforms bhi banate hain.
+          </p>
+          <p className="mt-3 leading-relaxed text-muted">
+            <Link className="font-semibold text-maroon underline" href="/contact">{ADDRESS}</Link>
+            {" · "}<a className="font-semibold text-maroon underline" href={`tel:+${PHONE}`}>{PHONE_DISPLAY}</a>
+          </p>
         </div>
       </section>
 

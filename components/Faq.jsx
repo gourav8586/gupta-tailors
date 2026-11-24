@@ -10,11 +10,11 @@ const CONTACT_LINK = "text-[#d7dce6] hover:text-gold2";
 
 export default function Faq() {
   return (
-    <section className="section bg-[#faf6ee]">
+    <section id="faq" aria-labelledby="faq-heading" className="section bg-[#faf6ee]">
       <div className="container grid grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-start gap-10 max-[901px]:grid-cols-[1fr] max-[901px]:gap-7">
         <aside className="sticky top-[110px] rounded-[14px] bg-[#1c2430] px-8 py-9 text-white max-[901px]:static max-[901px]:px-6 max-[901px]:py-[30px]">
           <span className="text-[11px] font-bold tracking-[4px] text-gold2">FAQs</span>
-          <h2 className="mt-[10px] mb-3 font-serif text-[40px] font-bold leading-[1.05] max-[901px]:text-[34px]">Aksar Pooche Jaane Wale Sawaal</h2>
+          <h2 id="faq-heading" className="mt-[10px] mb-3 font-serif text-[40px] font-bold leading-[1.05] max-[901px]:text-[34px]">Aksar Pooche Jaane Wale Sawaal</h2>
           <p className="mb-[26px] leading-[1.6] text-[#b9c1d1] max-[761px]:mb-0">Koi aur sawaal ho to seedhe humein call karein ya dukaan par aayein.</p>
 
           <ul className="mb-[26px] grid gap-[18px] max-[761px]:hidden">

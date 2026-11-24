@@ -56,6 +56,7 @@ export default function Header() {
 
           <nav className={`flex items-center text-[14px] font-semibold max-[1241px]:text-[13.5px] min-[1101px]:contents max-[1101px]:absolute max-[1101px]:top-[calc(100%+8px)] max-[1101px]:right-3 max-[1101px]:left-3 max-[1101px]:flex-col max-[1101px]:items-stretch max-[1101px]:gap-1 max-[1101px]:overflow-hidden max-[1101px]:rounded-[16px] max-[1101px]:border-2 max-[1101px]:border-[#e4c98f] max-[1101px]:bg-white max-[1101px]:px-[5%] max-[1101px]:py-[15px] max-[1101px]:text-[14px] ${menuOpen ? "max-[1101px]:flex" : "max-[1101px]:hidden"}`}>
             <div className="flex items-center gap-[25px] max-[1321px]:gap-4 max-[1101px]:contents">
+              {menuOpen && pathname !== "/" && <Link href="/" className={`${linkClass("/")} min-[1101px]:hidden`} onClick={closeMenu}>Home</Link>}
               <Link href="/about" className={linkClass("/about")} onClick={closeMenu}>About Us</Link>
               <Link href="/services" className={linkClass("/services")} onClick={closeMenu}>Tailoring Services</Link>
               <Link href="/uniforms" className={linkClass("/uniforms")} onClick={closeMenu}>Uniform Stitching</Link>

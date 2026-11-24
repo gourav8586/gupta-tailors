@@ -9,7 +9,7 @@ const BLOCKED_KEYS = [
   e => e.key === "F12",
   e => (e.ctrlKey || e.metaKey) && e.shiftKey && ["i", "j", "c", "k"].includes(e.key.toLowerCase()), // DevTools
   e => (e.ctrlKey || e.metaKey) && e.altKey && ["i", "j", "c", "u"].includes(e.key.toLowerCase()),   // DevTools (macOS)
-  e => (e.ctrlKey || e.metaKey) && ["u", "s", "p"].includes(e.key.toLowerCase()),                    // source, save, print
+  e => (e.ctrlKey || e.metaKey) && ["f", "u", "s", "p"].includes(e.key.toLowerCase()),                // find, source, save, print
 ];
 
 const isEditable = el => el && (el.closest("input, textarea, [contenteditable='true']"));
