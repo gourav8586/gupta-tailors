@@ -3,21 +3,19 @@ import Footer from "../components/Footer";
 import CallFloat from "../components/CallFloat";
 import JsonLd from "../components/JsonLd";
 import SiteProtection from "../components/SiteProtection";
-import { KEYWORDS, PAGES, businessJsonLd } from "../lib/seo";
+import { PAGES, businessJsonLd, pageMetadata } from "../lib/seo";
 import { GOOGLE_SITE_VERIFICATION, SITE_NAME, SITE_URL } from "../lib/site";
 import "./globals.css";
 
 export const metadata = {
+  ...pageMetadata("home"),
   metadataBase: new URL(SITE_URL),
   title: { default: PAGES.home.title, template: "%s | Gupta Tailors Alwar" },
-  description: PAGES.home.description,
-  keywords: KEYWORDS,
   applicationName: SITE_NAME,
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
   category: "Tailoring",
-  alternates: { canonical: "/" },
   robots: {
     index: true,
     follow: true,
@@ -25,21 +23,6 @@ export const metadata = {
   },
   ...(GOOGLE_SITE_VERIFICATION && { verification: { google: GOOGLE_SITE_VERIFICATION } }),
   formatDetection: { telephone: true, address: true },
-  openGraph: {
-    type: "website",
-    locale: "en_IN",
-    siteName: SITE_NAME,
-    url: "/",
-    title: PAGES.home.title,
-    description: PAGES.home.description,
-    images: [{ url: "/logo.png", alt: "Gupta Tailors — Since 1979. Perfect Fit. Personal Touch." }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: PAGES.home.title,
-    description: PAGES.home.description,
-    images: ["/logo.png"],
-  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },

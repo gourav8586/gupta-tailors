@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap');
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+@source ".";
+@source "../components";
+@source "../lib";
 
 /* Brand tokens: use as bg-maroon, text-gold2, border-line, font-serif, font-hand, ... */
 @theme {
