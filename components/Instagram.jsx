@@ -9,6 +9,7 @@ const API = "https://graph.instagram.com";
 const MEDIA_FIELDS = "id,caption,media_type,media_url,thumbnail_url,permalink";
 const PROFILE_FIELDS = "username,name,profile_picture_url,followers_count,media_count";
 const POST_COUNT = 10;
+const MOBILE_POST_COUNT = 7;
 
 const GRID = "mb-0 grid grid-cols-6 gap-3 max-[980px]:grid-cols-4 max-[760px]:grid-cols-3 max-[760px]:gap-2";
 const POST = "group relative block aspect-square overflow-hidden rounded-[14px] bg-[#f1ebe0] max-[760px]:rounded-[10px]";
@@ -24,7 +25,7 @@ const fetchJson = url => fetch(url).then(res => res.json()).then(data => {
 });
 
 // Reels play a muted preview while hovered; everything else shows its image.
-function InstaPost({ post, featured, hideOnDesktop }) {
+function InstaPost({ post, featured, hideOnDesktop, hideOnMobile }) {
   const videoRef = useRef(null);
   const isVideo = post.media_type === "VIDEO";
   const caption = post.caption ? post.caption.replace(/\s+/g, " ").trim() : "";
@@ -33,7 +34,7 @@ function InstaPost({ post, featured, hideOnDesktop }) {
   const stop = () => { if (videoRef.current) { videoRef.current.pause(); videoRef.current.currentTime = 0; } };
 
   return (
-    <a className={`${POST} ${featured ? FEATURED : ""} ${hideOnDesktop ? "min-[981px]:hidden" : ""} shadow-[0_10px_25px_rgba(65,42,17,.08)]`} href={post.permalink} target="_blank" rel="noreferrer"
+    <a className={`${POST} ${featured ? FEATURED : ""} ${hideOnDesktop ? "min-[981px]:hidden" : ""} ${hideOnMobile ? "max-[760px]:hidden" : ""} shadow-[0_10px_25px_rgba(65,42,17,.08)]`} href={post.permalink} target="_blank" rel="noreferrer"
       onMouseEnter={play} onMouseLeave={stop} onFocus={play} onBlur={stop}>
       <img className={`${MEDIA} transition-transform duration-600 ease-[ease] group-hover:scale-[1.06] motion-reduce:transition-none`} src={isVideo ? post.thumbnail_url : post.media_url} alt={caption ? caption.slice(0, 80) : "Gupta Tailors Instagram post"} loading="lazy" />
       {isVideo && <video disablePictureInPicture controlsList="nodownload" onContextMenu={e => e.preventDefault()} className={`${MEDIA} opacity-0 transition-opacity duration-300 ease-[ease] group-hover:opacity-100 group-focus:opacity-100`} ref={videoRef} src={post.media_url} muted loop playsInline preload="none" aria-hidden="true" />}
@@ -75,34 +76,39 @@ export function InstagramFeed() {
 
   return (
     <div className="leading-[normal] [--ig:linear-gradient(45deg,#f9ce34,#ee2a7b_45%,#6228d7)]">
-      <div className="mx-auto mt-0 mb-[18px] flex max-w-[880px] items-center gap-[18px] rounded-[18px] border border-[#efe4cf] bg-white px-5 py-3 shadow-[0_14px_34px_rgba(94,16,20,.07)] max-[760px]:flex-wrap max-[760px]:gap-3.5 max-[760px]:p-4">
-        <a className="grid h-14 w-14 flex-none place-items-center rounded-full bg-(image:--ig) p-[3px] text-white" href={SOCIALS.instagram} target="_blank" rel="noreferrer" aria-label="Gupta Tailors Instagram">
-          {profile?.profile_picture_url ? <img className="block h-full w-full rounded-full border-[3px] border-white object-cover" src={profile.profile_picture_url} alt="" /> : <InstagramIcon className="h-7 w-7" />}
+      <div className="mx-auto mt-0 mb-[18px] flex max-w-[880px] items-center gap-[18px] rounded-[18px] border border-[#efe4cf] bg-white px-5 py-3 shadow-[0_14px_34px_rgba(94,16,20,.07)] max-[760px]:grid max-[760px]:grid-cols-[64px_minmax(0,1fr)_auto] max-[760px]:items-center max-[760px]:gap-x-[10px] max-[760px]:gap-y-[14px] max-[760px]:rounded-[16px] max-[760px]:border-0 max-[760px]:bg-white max-[760px]:px-4 max-[760px]:py-4 max-[760px]:text-navy max-[760px]:shadow-[0_14px_34px_rgba(94,16,20,.07)]">
+        <a className="grid h-14 w-14 flex-none place-items-center rounded-full bg-(image:--ig) p-[3px] text-white max-[760px]:h-[64px] max-[760px]:w-[64px] max-[760px]:border-[2px] max-[760px]:border-[#2b9cff] max-[760px]:bg-white" href={SOCIALS.instagram} target="_blank" rel="noreferrer" aria-label="Gupta Tailors Instagram">
+          {profile?.profile_picture_url ? <img className="block h-full w-full rounded-full border-[3px] border-white object-cover" src={profile.profile_picture_url} alt="" /> : <div className="grid h-full w-full place-items-center rounded-full bg-[#f8f6f1] text-navy"><InstagramIcon className="h-7 w-7" /></div>}
         </a>
-        <div className="min-w-0">
-          <b className="block font-serif text-[24px] leading-[1.1] text-navy">{profile?.name || "Gupta Tailors"}</b>
-          <span className="text-[14px] font-semibold text-muted">@{profile?.username || "gupta.tailors"}</span>
+        <div className="min-w-0 max-[760px]:self-center">
+          <b className="block font-serif text-[24px] leading-[1.1] text-navy max-[760px]:truncate max-[760px]:text-[20px] max-[760px]:text-navy">{profile?.name || "Gupta Tailors"}</b>
+          <span className="text-[14px] font-semibold text-muted max-[760px]:mt-1 max-[760px]:block max-[760px]:truncate max-[760px]:text-[12px] max-[760px]:text-muted">@{profile?.username || "gupta.tailors"}</span>
         </div>
-        {profile && (
-          <div className="ml-auto flex gap-[26px] px-2 max-[760px]:order-3 max-[760px]:ml-0 max-[760px]:justify-start max-[760px]:gap-4 max-[760px]:p-0">
-            <div className="text-center"><b className={STAT_NUM}>{profile.media_count}</b><span className={STAT_LABEL}>Posts</span></div>
-            <div className="text-center"><b className={STAT_NUM}>{profile.followers_count}</b><span className={STAT_LABEL}>Followers</span></div>
+        {profile ? (
+          <div className="ml-auto flex gap-[26px] px-2 max-[760px]:ml-0 max-[760px]:gap-[14px] max-[760px]:px-0">
+            <div className="text-center"><b className={`${STAT_NUM} max-[760px]:text-[19px] max-[760px]:text-maroon`}>{profile.media_count}</b><span className={`${STAT_LABEL} max-[760px]:mt-1 max-[760px]:block max-[760px]:text-[9px] max-[760px]:text-muted`}>Posts</span></div>
+            <div className="text-center"><b className={`${STAT_NUM} max-[760px]:text-[19px] max-[760px]:text-maroon`}>{profile.followers_count}</b><span className={`${STAT_LABEL} max-[760px]:mt-1 max-[760px]:block max-[760px]:text-[9px] max-[760px]:text-muted`}>Followers</span></div>
+          </div>
+        ) : (
+          <div className="ml-auto flex gap-[26px] px-2 max-[760px]:ml-0 max-[760px]:gap-[14px] max-[760px]:px-0">
+            <div className="text-center"><b className={`${STAT_NUM} max-[760px]:text-[19px] max-[760px]:text-maroon`}>—</b><span className={`${STAT_LABEL} max-[760px]:mt-1 max-[760px]:block max-[760px]:text-[9px] max-[760px]:text-muted`}>Posts</span></div>
+            <div className="text-center"><b className={`${STAT_NUM} max-[760px]:text-[19px] max-[760px]:text-maroon`}>—</b><span className={`${STAT_LABEL} max-[760px]:mt-1 max-[760px]:block max-[760px]:text-[9px] max-[760px]:text-muted`}>Followers</span></div>
           </div>
         )}
-        <a className={`inline-flex flex-none items-center gap-2 rounded-[40px] bg-(image:--ig) px-[22px] py-3 text-[15px] font-bold text-white shadow-[0_10px_22px_rgba(238,42,123,.25)] transition-transform duration-[250ms] ease-[ease] hover:-translate-y-0.5 max-[760px]:order-4 max-[760px]:gap-1.5 max-[760px]:px-4 max-[760px]:py-2.5 max-[760px]:text-[13.5px] ${profile ? "ml-0 max-[760px]:ml-auto" : "ml-auto"}`} href={SOCIALS.instagram} target="_blank" rel="noreferrer">
-          <InstagramIcon size={18} /> Follow Karein
+        <a className={`inline-flex flex-none items-center gap-2 rounded-[40px] bg-(image:--ig) px-[22px] py-3 text-[15px] font-bold text-white shadow-[0_10px_22px_rgba(238,42,123,.25)] transition-transform duration-[250ms] ease-[ease] hover:-translate-y-0.5 max-[760px]:col-span-3 max-[760px]:h-[50px] max-[760px]:justify-center max-[760px]:gap-2 max-[760px]:rounded-[28px] max-[760px]:px-4 max-[760px]:py-0 max-[760px]:text-[16px] max-[760px]:shadow-none ${profile ? "ml-0" : "ml-auto max-[760px]:ml-0"}`} href={SOCIALS.instagram} target="_blank" rel="noreferrer">
+          <InstagramIcon size={18} /> Follow Us
         </a>
       </div>
 
       {status === "loading" && (
         <div className={GRID} aria-label="Posts load ho rahi hain">
-          {Array.from({ length: POST_COUNT }, (_, i) => <span key={i} className={`${POST} ${i === 0 ? FEATURED : ""} ${i === POST_COUNT - 1 ? "min-[981px]:hidden" : ""} ${SKELETON}`} />)}
+          {Array.from({ length: MOBILE_POST_COUNT }, (_, i) => <span key={i} className={`${POST} ${i === 0 ? FEATURED : ""} ${i === POST_COUNT - 1 ? "min-[981px]:hidden" : ""} ${i >= MOBILE_POST_COUNT ? "max-[760px]:hidden" : ""} ${SKELETON}`} />)}
         </div>
       )}
 
       {status === "ready" && posts.length > 0 && (
         <div className={GRID}>
-          {posts.map((post, i) => <InstaPost key={post.id} post={post} featured={i === 0} hideOnDesktop={i === POST_COUNT - 1} />)}
+          {posts.map((post, i) => <InstaPost key={post.id} post={post} featured={i === 0} hideOnDesktop={i === POST_COUNT - 1} hideOnMobile={i >= MOBILE_POST_COUNT} />)}
         </div>
       )}
 
