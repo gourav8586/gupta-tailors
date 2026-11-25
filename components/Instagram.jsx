@@ -8,11 +8,11 @@ import { INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID, SOCIALS } from "../lib/site"
 const API = "https://graph.instagram.com";
 const MEDIA_FIELDS = "id,caption,media_type,media_url,thumbnail_url,permalink";
 const PROFILE_FIELDS = "username,name,profile_picture_url,followers_count,media_count";
-const POST_COUNT = 9;
+const POST_COUNT = 10;
 
 const GRID = "mb-0 grid grid-cols-6 gap-3 max-[980px]:grid-cols-4 max-[760px]:grid-cols-3 max-[760px]:gap-2";
 const POST = "group relative block aspect-square overflow-hidden rounded-[14px] bg-[#f1ebe0] max-[760px]:rounded-[10px]";
-const FEATURED = "col-span-2 row-span-2";
+const FEATURED = "col-span-2 row-span-2 max-[760px]:col-span-3 max-[760px]:row-span-1";
 const SKELETON = "bg-[linear-gradient(100deg,#f1ebe0_30%,#faf6ee_50%,#f1ebe0_70%)] bg-size-[200%_100%] animate-shimmer motion-reduce:animate-none";
 const MEDIA = "absolute inset-0 block h-full w-full object-cover";
 const STAT_NUM = "block text-[20px] leading-[1.1] font-bold text-maroon";
@@ -24,7 +24,7 @@ const fetchJson = url => fetch(url).then(res => res.json()).then(data => {
 });
 
 // Reels play a muted preview while hovered; everything else shows its image.
-function InstaPost({ post, featured }) {
+function InstaPost({ post, featured, hideOnDesktop }) {
   const videoRef = useRef(null);
   const isVideo = post.media_type === "VIDEO";
   const caption = post.caption ? post.caption.replace(/\s+/g, " ").trim() : "";
@@ -33,7 +33,7 @@ function InstaPost({ post, featured }) {
   const stop = () => { if (videoRef.current) { videoRef.current.pause(); videoRef.current.currentTime = 0; } };
 
   return (
-    <a className={`${POST} ${featured ? FEATURED : ""} shadow-[0_10px_25px_rgba(65,42,17,.08)]`} href={post.permalink} target="_blank" rel="noreferrer"
+    <a className={`${POST} ${featured ? FEATURED : ""} ${hideOnDesktop ? "min-[981px]:hidden" : ""} shadow-[0_10px_25px_rgba(65,42,17,.08)]`} href={post.permalink} target="_blank" rel="noreferrer"
       onMouseEnter={play} onMouseLeave={stop} onFocus={play} onBlur={stop}>
       <img className={`${MEDIA} transition-transform duration-600 ease-[ease] group-hover:scale-[1.06] motion-reduce:transition-none`} src={isVideo ? post.thumbnail_url : post.media_url} alt={caption ? caption.slice(0, 80) : "Gupta Tailors Instagram post"} loading="lazy" />
       {isVideo && <video disablePictureInPicture controlsList="nodownload" onContextMenu={e => e.preventDefault()} className={`${MEDIA} opacity-0 transition-opacity duration-300 ease-[ease] group-hover:opacity-100 group-focus:opacity-100`} ref={videoRef} src={post.media_url} muted loop playsInline preload="none" aria-hidden="true" />}
@@ -96,13 +96,13 @@ export function InstagramFeed() {
 
       {status === "loading" && (
         <div className={GRID} aria-label="Posts load ho rahi hain">
-          {Array.from({ length: POST_COUNT }, (_, i) => <span key={i} className={`${POST} ${i === 0 ? FEATURED : ""} ${SKELETON}`} />)}
+          {Array.from({ length: POST_COUNT }, (_, i) => <span key={i} className={`${POST} ${i === 0 ? FEATURED : ""} ${i === POST_COUNT - 1 ? "min-[981px]:hidden" : ""} ${SKELETON}`} />)}
         </div>
       )}
 
       {status === "ready" && posts.length > 0 && (
         <div className={GRID}>
-          {posts.map((post, i) => <InstaPost key={post.id} post={post} featured={i === 0} />)}
+          {posts.map((post, i) => <InstaPost key={post.id} post={post} featured={i === 0} hideOnDesktop={i === POST_COUNT - 1} />)}
         </div>
       )}
 
